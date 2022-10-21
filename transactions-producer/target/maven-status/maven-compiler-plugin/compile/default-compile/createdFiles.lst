@@ -1,12 +1,4 @@
-com/pluralsight/kafka/producer/model/Product.class
-com/pluralsight/kafka/producer/model/User$UserBuilder.class
-com/pluralsight/kafka/producer/model/User.class
-com/pluralsight/kafka/producer/enums/ProductType.class
-com/pluralsight/kafka/producer/enums/DesignType.class
-com/pluralsight/kafka/producer/EventGenerator.class
-com/pluralsight/kafka/producer/Main.class
-com/pluralsight/kafka/producer/model/Event.class
-com/pluralsight/kafka/producer/model/Event$EventBuilder.class
-com/pluralsight/kafka/producer/model/Product$ProductBuilder.class
-com/pluralsight/kafka/producer/enums/Color.class
-com/pluralsight/kafka/producer/enums/UserId.class
+com\codewithz\kafka\streams\model\Order$Builder.class
+com\codewithz\kafka\streams\model\Order$1.class
+com\codewithz\kafka\streams\Main.class
+com\codewithz\kafka\streams\model\Order.class

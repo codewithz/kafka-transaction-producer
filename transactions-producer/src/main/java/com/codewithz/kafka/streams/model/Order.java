@@ -5,28 +5,40 @@
  */
 package com.codewithz.kafka.streams.model;
 
+import org.apache.avro.generic.GenericArray;
 import org.apache.avro.specific.SpecificData;
+import org.apache.avro.util.Utf8;
 import org.apache.avro.message.BinaryMessageEncoder;
 import org.apache.avro.message.BinaryMessageDecoder;
 import org.apache.avro.message.SchemaStore;
 
-@SuppressWarnings("all")
 @org.apache.avro.specific.AvroGenerated
 public class Order extends org.apache.avro.specific.SpecificRecordBase implements org.apache.avro.specific.SpecificRecord {
-  private static final long serialVersionUID = 1422195720914012145L;
-  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"Order\",\"namespace\":\"com.pluralsight.kafka.streams.model\",\"fields\":[{\"name\":\"userId\",\"type\":\"string\"},{\"name\":\"totalAmount\",\"type\":\"float\"},{\"name\":\"nbOfItems\",\"type\":\"int\"}]}");
+  private static final long serialVersionUID = -4918745452074311611L;
+
+
+  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"Order\",\"namespace\":\"com.codewithz.kafka.streams.model\",\"fields\":[{\"name\":\"userId\",\"type\":\"string\"},{\"name\":\"totalAmount\",\"type\":\"float\"},{\"name\":\"nbOfItems\",\"type\":\"int\"}]}");
   public static org.apache.avro.Schema getClassSchema() { return SCHEMA$; }
 
-  private static SpecificData MODEL$ = new SpecificData();
+  private static final SpecificData MODEL$ = new SpecificData();
 
   private static final BinaryMessageEncoder<Order> ENCODER =
-      new BinaryMessageEncoder<Order>(MODEL$, SCHEMA$);
+      new BinaryMessageEncoder<>(MODEL$, SCHEMA$);
 
   private static final BinaryMessageDecoder<Order> DECODER =
-      new BinaryMessageDecoder<Order>(MODEL$, SCHEMA$);
+      new BinaryMessageDecoder<>(MODEL$, SCHEMA$);
+
+  /**
+   * Return the BinaryMessageEncoder instance used by this class.
+   * @return the message encoder used by this class
+   */
+  public static BinaryMessageEncoder<Order> getEncoder() {
+    return ENCODER;
+  }
 
   /**
    * Return the BinaryMessageDecoder instance used by this class.
+   * @return the message decoder used by this class
    */
   public static BinaryMessageDecoder<Order> getDecoder() {
     return DECODER;
@@ -35,25 +47,35 @@ public class Order extends org.apache.avro.specific.SpecificRecordBase implement
   /**
    * Create a new BinaryMessageDecoder instance for this class that uses the specified {@link SchemaStore}.
    * @param resolver a {@link SchemaStore} used to find schemas by fingerprint
+   * @return a BinaryMessageDecoder instance for this class backed by the given SchemaStore
    */
   public static BinaryMessageDecoder<Order> createDecoder(SchemaStore resolver) {
-    return new BinaryMessageDecoder<Order>(MODEL$, SCHEMA$, resolver);
+    return new BinaryMessageDecoder<>(MODEL$, SCHEMA$, resolver);
   }
 
-  /** Serializes this Order to a ByteBuffer. */
+  /**
+   * Serializes this Order to a ByteBuffer.
+   * @return a buffer holding the serialized data for this instance
+   * @throws java.io.IOException if this instance could not be serialized
+   */
   public java.nio.ByteBuffer toByteBuffer() throws java.io.IOException {
     return ENCODER.encode(this);
   }
 
-  /** Deserializes a Order from a ByteBuffer. */
+  /**
+   * Deserializes a Order from a ByteBuffer.
+   * @param b a byte buffer holding serialized data for an instance of this class
+   * @return a Order instance decoded from the given buffer
+   * @throws java.io.IOException if the given bytes could not be deserialized into an instance of this class
+   */
   public static Order fromByteBuffer(
       java.nio.ByteBuffer b) throws java.io.IOException {
     return DECODER.decode(b);
   }
 
-  @Deprecated public java.lang.CharSequence userId;
-  @Deprecated public float totalAmount;
-  @Deprecated public int nbOfItems;
+  private java.lang.CharSequence userId;
+  private float totalAmount;
+  private int nbOfItems;
 
   /**
    * Default constructor.  Note that this does not initialize fields
@@ -74,25 +96,32 @@ public class Order extends org.apache.avro.specific.SpecificRecordBase implement
     this.nbOfItems = nbOfItems;
   }
 
+  @Override
+  public org.apache.avro.specific.SpecificData getSpecificData() { return MODEL$; }
+
+  @Override
   public org.apache.avro.Schema getSchema() { return SCHEMA$; }
+
   // Used by DatumWriter.  Applications should not call.
+  @Override
   public java.lang.Object get(int field$) {
     switch (field$) {
     case 0: return userId;
     case 1: return totalAmount;
     case 2: return nbOfItems;
-    default: throw new org.apache.avro.AvroRuntimeException("Bad index");
+    default: throw new IndexOutOfBoundsException("Invalid index: " + field$);
     }
   }
 
   // Used by DatumReader.  Applications should not call.
+  @Override
   @SuppressWarnings(value="unchecked")
   public void put(int field$, java.lang.Object value$) {
     switch (field$) {
     case 0: userId = (java.lang.CharSequence)value$; break;
     case 1: totalAmount = (java.lang.Float)value$; break;
     case 2: nbOfItems = (java.lang.Integer)value$; break;
-    default: throw new org.apache.avro.AvroRuntimeException("Bad index");
+    default: throw new IndexOutOfBoundsException("Invalid index: " + field$);
     }
   }
 
@@ -103,6 +132,7 @@ public class Order extends org.apache.avro.specific.SpecificRecordBase implement
   public java.lang.CharSequence getUserId() {
     return userId;
   }
+
 
   /**
    * Sets the value of the 'userId' field.
@@ -116,15 +146,16 @@ public class Order extends org.apache.avro.specific.SpecificRecordBase implement
    * Gets the value of the 'totalAmount' field.
    * @return The value of the 'totalAmount' field.
    */
-  public java.lang.Float getTotalAmount() {
+  public float getTotalAmount() {
     return totalAmount;
   }
+
 
   /**
    * Sets the value of the 'totalAmount' field.
    * @param value the value to set.
    */
-  public void setTotalAmount(java.lang.Float value) {
+  public void setTotalAmount(float value) {
     this.totalAmount = value;
   }
 
@@ -132,15 +163,16 @@ public class Order extends org.apache.avro.specific.SpecificRecordBase implement
    * Gets the value of the 'nbOfItems' field.
    * @return The value of the 'nbOfItems' field.
    */
-  public java.lang.Integer getNbOfItems() {
+  public int getNbOfItems() {
     return nbOfItems;
   }
+
 
   /**
    * Sets the value of the 'nbOfItems' field.
    * @param value the value to set.
    */
-  public void setNbOfItems(java.lang.Integer value) {
+  public void setNbOfItems(int value) {
     this.nbOfItems = value;
   }
 
@@ -158,7 +190,11 @@ public class Order extends org.apache.avro.specific.SpecificRecordBase implement
    * @return A new Order RecordBuilder
    */
   public static com.codewithz.kafka.streams.model.Order.Builder newBuilder(com.codewithz.kafka.streams.model.Order.Builder other) {
-    return new com.codewithz.kafka.streams.model.Order.Builder(other);
+    if (other == null) {
+      return new com.codewithz.kafka.streams.model.Order.Builder();
+    } else {
+      return new com.codewithz.kafka.streams.model.Order.Builder(other);
+    }
   }
 
   /**
@@ -167,12 +203,17 @@ public class Order extends org.apache.avro.specific.SpecificRecordBase implement
    * @return A new Order RecordBuilder
    */
   public static com.codewithz.kafka.streams.model.Order.Builder newBuilder(com.codewithz.kafka.streams.model.Order other) {
-    return new com.codewithz.kafka.streams.model.Order.Builder(other);
+    if (other == null) {
+      return new com.codewithz.kafka.streams.model.Order.Builder();
+    } else {
+      return new com.codewithz.kafka.streams.model.Order.Builder(other);
+    }
   }
 
   /**
    * RecordBuilder for Order instances.
    */
+  @org.apache.avro.specific.AvroGenerated
   public static class Builder extends org.apache.avro.specific.SpecificRecordBuilderBase<Order>
     implements org.apache.avro.data.RecordBuilder<Order> {
 
@@ -182,7 +223,7 @@ public class Order extends org.apache.avro.specific.SpecificRecordBase implement
 
     /** Creates a new Builder */
     private Builder() {
-      super(SCHEMA$);
+      super(SCHEMA$, MODEL$);
     }
 
     /**
@@ -193,15 +234,15 @@ public class Order extends org.apache.avro.specific.SpecificRecordBase implement
       super(other);
       if (isValidValue(fields()[0], other.userId)) {
         this.userId = data().deepCopy(fields()[0].schema(), other.userId);
-        fieldSetFlags()[0] = true;
+        fieldSetFlags()[0] = other.fieldSetFlags()[0];
       }
       if (isValidValue(fields()[1], other.totalAmount)) {
         this.totalAmount = data().deepCopy(fields()[1].schema(), other.totalAmount);
-        fieldSetFlags()[1] = true;
+        fieldSetFlags()[1] = other.fieldSetFlags()[1];
       }
       if (isValidValue(fields()[2], other.nbOfItems)) {
         this.nbOfItems = data().deepCopy(fields()[2].schema(), other.nbOfItems);
-        fieldSetFlags()[2] = true;
+        fieldSetFlags()[2] = other.fieldSetFlags()[2];
       }
     }
 
@@ -210,7 +251,7 @@ public class Order extends org.apache.avro.specific.SpecificRecordBase implement
      * @param other The existing instance to copy.
      */
     private Builder(com.codewithz.kafka.streams.model.Order other) {
-            super(SCHEMA$);
+      super(SCHEMA$, MODEL$);
       if (isValidValue(fields()[0], other.userId)) {
         this.userId = data().deepCopy(fields()[0].schema(), other.userId);
         fieldSetFlags()[0] = true;
@@ -232,6 +273,7 @@ public class Order extends org.apache.avro.specific.SpecificRecordBase implement
     public java.lang.CharSequence getUserId() {
       return userId;
     }
+
 
     /**
       * Sets the value of the 'userId' field.
@@ -268,9 +310,10 @@ public class Order extends org.apache.avro.specific.SpecificRecordBase implement
       * Gets the value of the 'totalAmount' field.
       * @return The value.
       */
-    public java.lang.Float getTotalAmount() {
+    public float getTotalAmount() {
       return totalAmount;
     }
+
 
     /**
       * Sets the value of the 'totalAmount' field.
@@ -306,9 +349,10 @@ public class Order extends org.apache.avro.specific.SpecificRecordBase implement
       * Gets the value of the 'nbOfItems' field.
       * @return The value.
       */
-    public java.lang.Integer getNbOfItems() {
+    public int getNbOfItems() {
       return nbOfItems;
     }
+
 
     /**
       * Sets the value of the 'nbOfItems' field.
@@ -349,6 +393,8 @@ public class Order extends org.apache.avro.specific.SpecificRecordBase implement
         record.totalAmount = fieldSetFlags()[1] ? this.totalAmount : (java.lang.Float) defaultValue(fields()[1]);
         record.nbOfItems = fieldSetFlags()[2] ? this.nbOfItems : (java.lang.Integer) defaultValue(fields()[2]);
         return record;
+      } catch (org.apache.avro.AvroMissingFieldException e) {
+        throw e;
       } catch (java.lang.Exception e) {
         throw new org.apache.avro.AvroRuntimeException(e);
       }
@@ -373,4 +419,59 @@ public class Order extends org.apache.avro.specific.SpecificRecordBase implement
     READER$.read(this, SpecificData.getDecoder(in));
   }
 
+  @Override protected boolean hasCustomCoders() { return true; }
+
+  @Override public void customEncode(org.apache.avro.io.Encoder out)
+    throws java.io.IOException
+  {
+    out.writeString(this.userId);
+
+    out.writeFloat(this.totalAmount);
+
+    out.writeInt(this.nbOfItems);
+
+  }
+
+  @Override public void customDecode(org.apache.avro.io.ResolvingDecoder in)
+    throws java.io.IOException
+  {
+    org.apache.avro.Schema.Field[] fieldOrder = in.readFieldOrderIfDiff();
+    if (fieldOrder == null) {
+      this.userId = in.readString(this.userId instanceof Utf8 ? (Utf8)this.userId : null);
+
+      this.totalAmount = in.readFloat();
+
+      this.nbOfItems = in.readInt();
+
+    } else {
+      for (int i = 0; i < 3; i++) {
+        switch (fieldOrder[i].pos()) {
+        case 0:
+          this.userId = in.readString(this.userId instanceof Utf8 ? (Utf8)this.userId : null);
+          break;
+
+        case 1:
+          this.totalAmount = in.readFloat();
+          break;
+
+        case 2:
+          this.nbOfItems = in.readInt();
+          break;
+
+        default:
+          throw new java.io.IOException("Corrupt ResolvingDecoder.");
+        }
+      }
+    }
+  }
 }
+
+
+
+
+
+
+
+
+
+
